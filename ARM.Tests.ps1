@@ -17,7 +17,8 @@ $JsonFile = Split-Path -Leaf $RepoRoot
 Describe "Json file: $JsonFile" {
    BeforeAll { 
         $SchemaVersion = '2015-01-01-preview'
-        $SchemaUri = '{0}{1}#' -f 'http://schemas.microsoft.org/azure/deploymentTemplate?api-version=', $SchemaVersion     
+        $SchemaUri = '{0}{1}#' -f 'http://schemas.microsoft.org/azure/deploymentTemplate?api-version=', $SchemaVersion
+        [System.Reflection.Assembly]::LoadWithPartialName("System.Web.Extensions")     
         $JavaScriptSerializer = [System.Web.Script.Serialization.JavaScriptSerializer]::new()
         $JavaScriptSerializer.MaxJsonLength = $jsser.MaxJsonLength * 10
         $JavaScriptSerializer.RecursionLimit = 99
