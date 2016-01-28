@@ -20,23 +20,23 @@ Describe "Json file: $JsonFile" {
         $SchemaUri = '{0}{1}#' -f 'http://schemas.microsoft.org/azure/deploymentTemplate?api-version=', $SchemaVersion
         [System.Reflection.Assembly]::LoadWithPartialName("System.Web.Extensions")     
         $JavaScriptSerializer = [System.Web.Script.Serialization.JavaScriptSerializer]::new()
-        $JavaScriptSerializer.MaxJsonLength = $jsser.MaxJsonLength * 10
+        $JavaScriptSerializer.MaxJsonLength = $JavaScriptSerializer.MaxJsonLength * 10
         $JavaScriptSerializer.RecursionLimit = 99
         $json = $null
     }
     
     Context 'Valid Json' {
         It 'is valid Json' {
-            #$powershellRepresentation = ConvertFrom-Json (Get-Content $azuredeploy -Raw)
+            #$powershellRepresentation = ConvertFrom-Json (Get-Content $JsonFile -Raw)
             #should also work but throws an error for files > 2MB
             #http://stackoverflow.com/questions/17034954/how-to-check-if-file-has-valid-json-syntax-in-powershell
-           { $json = $JavaScriptSerializer.DeserializeObject((Get-Content $azuredeploy -Raw)) } | should Not Throw       
+           { $json = $JavaScriptSerializer.DeserializeObject((Get-Content $JsonFile -Raw)) } | should Not Throw       
         }
     } #end context Json file
     
-    Context "$azuredeploy properties" {   
+    Context "$JsonFile properties" {   
        BeforeAll {
-           $json =  $JavaScriptSerializer.DeserializeObject((Get-Content $azuredeploy -Raw))
+           $json =  $JavaScriptSerializer.DeserializeObject((Get-Content $JsonFile -Raw))
        }      
        It 'should include a schema' {  
            $json.Keys -ccontains '$schema'| Should Be $true     
