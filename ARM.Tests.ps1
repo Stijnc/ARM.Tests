@@ -10,11 +10,9 @@
 
 $ErrorActionPreference = 'stop'
 Set-StrictMode -Version latest
+$JsonFile = '.\azuredeploy.json'
 
-$RepoRoot = (Resolve-Path $PSScriptRoot\..).Path
-#$JsonFile = Split-Path -Leaf $RepoRoot
-$JsonFile = "$RepoRoot\azuredeploy.json"
-Describe "Json file: $JsonFile" {
+Describe "AzureDeploy Json file: $JsonFile" {
    BeforeAll { 
         $SchemaVersion = '2015-01-01-preview'
         $SchemaUri = '{0}{1}#' -f 'http://schemas.microsoft.org/azure/deploymentTemplate?api-version=', $SchemaVersion
