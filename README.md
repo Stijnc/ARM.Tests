@@ -8,7 +8,7 @@ The main reasons behind splitting tests over multiple repositories are portabili
 ## Test included
 * It is valid JSON
 * It includes a schema
-* The schema value is set to 'http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2015-01-01-preview#'
+* The schema value is'http://schemas.microsoft.org/azure/deploymentTemplate?api-version=2015-01-01-preview#'
 * It includes a 'parameters' section
 * It includes a 'variables' section
 * It includes a 'resources' section
